@@ -54,8 +54,7 @@ You must not modify the code in the supplied header file, but may if you wish ad
 variables to the class, such as arrays holding the number of days in each month or the names of the
 months. You are not allowed to add extra functions or friends to the class, but you may write in the
 .cpp file extra auxiliary functions that are not part of the class (such as a leap-year checking function
-
-## that takes the year as an argument).
+that takes the year as an argument).
 
 ## Exercise 2
 
