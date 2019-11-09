@@ -12,8 +12,9 @@ int main() {
     // Testing
 	Date date = Date(30, 4, 2014);
     cout << date;
-    ++date;
+    cout << date++;
     cout << date;
+
     system("pause");
 }
 
@@ -92,6 +93,32 @@ Date& Date::operator++() {
     }
 
     return *this;
+}
+
+// Implementation of postfix version of ++
+Date Date::operator++(int i) {
+    int maxDays; // Stores the maximum number of days in that month
+    Date date = Date(d, m, y);
+
+    if (m == (1 || 3 || 5 || 7 || 8 || 10 || 12)){
+        maxDays = 31;
+    } else if (m == 2) {
+        if (Date::isLeapYear()) {
+            maxDays = 29;
+        } else maxDays = 28;
+    } else maxDays = 30;
+
+    if (d == maxDays) {
+        d = 01;
+        if (m == 12) {
+            m = 01;
+            y += 1;
+        } else m += 1;
+    } else {
+        d += 1;
+    }
+
+    return date;
 }
 
 
