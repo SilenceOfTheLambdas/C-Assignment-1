@@ -10,7 +10,7 @@ using namespace std;
 
 int main() {
     // Testing
-	Date date = Date(31, 04, 2014);
+	Date date = Date(30, 4, 2014);
     cout << date;
     ++date;
     cout << date;
@@ -25,6 +25,10 @@ Date::Date() {
 
 Date::Date(unsigned int d,unsigned int m,unsigned int y) {
 
+    this->d = d;
+    this->m = m;
+    this->y = y;
+    
     int maxDays; // Stores the maximum number of days in that month
 
     if (m == (1 || 3 || 5 || 7 || 8 || 10 || 12)){
@@ -36,19 +40,18 @@ Date::Date(unsigned int d,unsigned int m,unsigned int y) {
     } else maxDays = 30;
 
     // Error checking for input of date
-    if (d < 1 || d > maxDays)
+    if ((d < 1) || (d > maxDays)) {
         cout << "Please enter a valid day!" << endl;
-        d = 1; m = 1; y = 1999;
-    if (m < 1 || m > 12) 
+        this->d = 1; this->m = 1; this->y = 1999;
+    }
+    if ((m < 1) || (m > 12)) {
         cout << "Please enter a valid month!" << endl;
-        d = 1; m = 1; y = 1999;
-    if (y < 1000) 
+        this->d = 1; this->m = 1; this->y = 1999;
+    }
+    if (y < 1000)  {
         cout << "Please enter a valid year!" << endl;
-        d = 1; m = 1; y = 1999;
-
-    this->d = 1;
-    this->m = 1;
-    this->y = 1999;
+        this->d = 1; this->m = 1; this->y = 1999;
+    }
 }
 
 bool Date::isLeapYear() const {
