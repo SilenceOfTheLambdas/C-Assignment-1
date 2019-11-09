@@ -10,7 +10,10 @@ using namespace std;
 
 int main() {
     // Testing
-	Date(12, 6, 2100);
+	Date date = Date(31, 04, 2014);
+    cout << date;
+    ++date;
+    cout << date;
     system("pause");
 }
 
@@ -22,30 +25,18 @@ Date::Date() {
 
 Date::Date(unsigned int d,unsigned int m,unsigned int y) {
 
-    this->d = d;
-    this->m = m;
-    this->y = y;
-
     int maxDays; // Stores the maximum number of days in that month
 
-    switch(m) {
-        case (1 || 3 || 5 || 7 || 8 || 10 || 12):
-            maxDays = 31;
-            break;
-        case 2:
-            if (Date::isLeapYear()) {
-                maxDays = 29;
-            } else {
-                maxDays = 28;
-            }
-            break;
-        default:
-            maxDays = 30;
-            break;
-    }
+    if (m == (1 || 3 || 5 || 7 || 8 || 10 || 12)){
+        maxDays = 31;
+    } else if (m == 2) {
+        if (Date::isLeapYear()) {
+            maxDays = 29;
+        } else maxDays = 28;
+    } else maxDays = 30;
 
     // Error checking for input of date
-    if (d < 1 || d > maxDays) 
+    if (d < 1 || d > maxDays)
         cout << "Please enter a valid day!" << endl;
         d = 1; m = 1; y = 1999;
     if (m < 1 || m > 12) 
@@ -54,6 +45,10 @@ Date::Date(unsigned int d,unsigned int m,unsigned int y) {
     if (y < 1000) 
         cout << "Please enter a valid year!" << endl;
         d = 1; m = 1; y = 1999;
+
+    this->d = 1;
+    this->m = 1;
+    this->y = 1999;
 }
 
 bool Date::isLeapYear() const {
@@ -72,23 +67,16 @@ bool Date::isLeapYear() const {
 Date& Date::operator++() {
 // Overloading of ++ operator, this function will return a new value.
 // This value being; the Date increased by 1.
+
     int maxDays; // Stores the maximum number of days in that month
 
-    switch(m) {
-        case (1 || 3 || 5 || 7 || 8 || 10 || 12):
-            maxDays = 31;
-            break;
-        case 2:
-            if (Date::isLeapYear()) {
-                maxDays = 29;
-            } else {
-                maxDays = 28;
-            }
-            break;
-        default:
-            maxDays = 30;
-            break;
-    }
+    if (m == (1 || 3 || 5 || 7 || 8 || 10 || 12)){
+        maxDays = 31;
+    } else if (m == 2) {
+        if (Date::isLeapYear()) {
+            maxDays = 29;
+        } else maxDays = 28;
+    } else maxDays = 30;
 
     if (d == maxDays) {
         d = 01;
@@ -103,26 +91,21 @@ Date& Date::operator++() {
     return *this;
 }
 
+
+
 Date& Date::operator--() {
 // Overloading of -- operator, this function will return a new value.
 // This value being; the Date decreased by 1.
+    
     int maxDays; // Stores the maximum number of days in that month
 
-    switch(m) {
-        case (1 || 3 || 5 || 7 || 8 || 10 || 12):
-            maxDays = 31;
-            break;
-        case 2:
-            if (Date::isLeapYear()) {
-                maxDays = 29;
-            } else {
-                maxDays = 28;
-            }
-            break;
-        default:
-            maxDays = 30;
-            break;
-    }
+    if (m == (1 || 3 || 5 || 7 || 8 || 10 || 12)){
+        maxDays = 31;
+    } else if (m == 2) {
+        if (Date::isLeapYear()) {
+            maxDays = 29;
+        } else maxDays = 28;
+    } else maxDays = 30;
 
     if (d == 1) {
         d = maxDays;
@@ -134,4 +117,10 @@ Date& Date::operator--() {
     }
 
     return *this;
+}
+
+// Overloading of << operator
+ostream& operator<<(ostream& o, const Date& d) {
+    o << d.d << '/' << d.m << '/' << d.y << endl;
+    return o;
 }

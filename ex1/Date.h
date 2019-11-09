@@ -24,6 +24,8 @@ class Date
     unsigned int d; // 1-31
     unsigned int m; // 1-12
     unsigned int y; // 1000-9999 (must be a 4-digit year)
+    string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "Spetember", "October", "November", "December"};
+    int maxDays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
   public:
     Date();  // initialise members to valid default values, e.g. 1/1/2019
