@@ -170,3 +170,27 @@ bool Date::operator==(const Date& other) const {
         return true;
     } else return false;
 }
+
+bool operator<=(const Date& d1, const Date& d2) {
+    if (d1 < d2 || d1 == d2) {
+        return true;
+    } else return false;
+}
+
+bool operator>(const Date& d1, const Date& d2) {
+    if (!(d1 < d2)) {
+        return true;
+    } else return false;
+}
+
+bool operator!=(const Date& d1, const Date& d2) {
+    if (!(d1 == d2)) {
+        return true;
+    } return false;
+}
+
+bool operator>=(const Date& d1, const Date& d2) {
+    if ((d1 > d2) || (d1 == d2)) {
+        return true;
+    } else return false;
+}
