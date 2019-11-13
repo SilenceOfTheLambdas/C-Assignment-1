@@ -11,9 +11,8 @@ using namespace std;
 int main() {
     // Testing
 	Date date = Date(30, 4, 2014);
-    cout << date;
+    cout << ++date;
     cout << date++;
-    cout << date;
 
     system("pause");
 }
@@ -126,7 +125,7 @@ Date Date::operator++(int i) {
 Date& Date::operator--() {
 // Overloading of -- operator, this function will return a new value.
 // This value being; the Date decreased by 1.
-    
+
     int maxDays; // Stores the maximum number of days in that month
 
     if (m == (1 || 3 || 5 || 7 || 8 || 10 || 12)){
@@ -153,4 +152,21 @@ Date& Date::operator--() {
 ostream& operator<<(ostream& o, const Date& d) {
     o << d.d << '/' << d.m << '/' << d.y << endl;
     return o;
+}
+
+// operator < implementing
+bool Date::operator<(const Date& other) const {
+    if (y < other.y) {
+        return true;
+    } else if (m < other.m) {
+        return true;
+    } else if (d < other.d) {
+        return true;
+    } else return false;
+}
+
+bool Date::operator==(const Date& other) const {
+    if ((d == other.d) && (y == other.y) && (m == other.m)) {
+        return true;
+    } else return false;
 }
