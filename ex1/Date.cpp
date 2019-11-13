@@ -148,6 +148,32 @@ Date& Date::operator--() {
     return *this;
 }
 
+// Overloading of string() function
+Date::operator string() const {
+    string day = to_string(d);
+    string month = to_string(m);
+    string year = to_string(y);
+    string end;
+
+    if (1 || 21 || 31) {
+        end = "st";
+    } else if (2 || 22) {
+        end = "nd";
+    } else if (3 || 23) {
+        end = "rd";
+    } else {
+        end = "th";
+    }
+
+    for (int i = 0; i < 12; i++) {
+        year = months[m - 1];
+    }
+
+    cout << day + end << month << year << endl;
+
+
+}
+
 // Overloading of << operator
 ostream& operator<<(ostream& o, const Date& d) {
     o << d.d << '/' << d.m << '/' << d.y << endl;
