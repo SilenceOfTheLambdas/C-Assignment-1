@@ -151,20 +151,16 @@ Date& Date::operator--() {
 Date::operator string() const {
 
     // Have to use string stream as to_string is broken on system
-    string day;
-    string month;
-    string year;
-    string end;
-
     stringstream dd;
     stringstream mm;
     stringstream yy;
     dd << d;
-    day = dd.str();
+    string day = dd.str();
     mm << m;
-    month = mm.str();
+    string month = mm.str();
     yy << y;
-    year = yy.str();
+    string year = yy.str();
+    string end;
     
     if (d == (1 || 21 || 31)) {
         end = "st";
@@ -181,7 +177,7 @@ Date::operator string() const {
     for (int i = 0; i < 12; i++) {
         month = months[m - 1];
     }
-    
+
     string str = day + end + " " + month + " " + year + '\n';
 
     
