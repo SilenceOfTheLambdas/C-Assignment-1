@@ -5,15 +5,14 @@
  */
 #include <iostream>
 #include "Date.h"
+#include <sstream>
 
 using namespace std;
 
 int main() {
     // Testing
-	Date date = Date(30, 4, 2014);
-    cout << ++date;
-    cout << date++;
-
+	Date date = Date(1, 5, 2019);
+    cout << string(date);
     system("pause");
 }
 
@@ -150,27 +149,43 @@ Date& Date::operator--() {
 
 // Overloading of string() function
 Date::operator string() const {
-    string day = to_string(d);
-    string month = to_string(m);
-    string year = to_string(y);
+
+    // Have to use string stream as to_string is broken on system
+    string day;
+    string month;
+    string year;
     string end;
 
-    if (1 || 21 || 31) {
+    stringstream dd;
+    stringstream mm;
+    stringstream yy;
+    dd << d;
+    day = dd.str();
+    mm << m;
+    month = mm.str();
+    yy << y;
+    year = yy.str();
+    
+    if (d == (1 || 21 || 31)) {
         end = "st";
-    } else if (2 || 22) {
+    } else if (d == (2 || 22)) {
         end = "nd";
-    } else if (3 || 23) {
+    } 
+    else if (d == 3 || d == 23) {
         end = "rd";
-    } else {
+    } 
+    else {
         end = "th";
     }
 
     for (int i = 0; i < 12; i++) {
-        year = months[m - 1];
+        month = months[m - 1];
     }
+    
+    string str = day + end + " " + month + " " + year + '\n';
 
-    cout << day + end << month << year << endl;
-
+    
+    return str;
 
 }
 
