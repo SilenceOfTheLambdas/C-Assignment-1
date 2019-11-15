@@ -12,7 +12,7 @@ using namespace std;
 int main() {
     const char *filename = "testwords.txt";
     ReadWords file = ReadWords(filename);
-    cout << file.getNextWord();
+    cout << file.getNextWord() << endl;
     system("pause");
 }
 
@@ -30,6 +30,12 @@ string removePunct(string word)
   // punctuation elsewhere in the word should not be removed
   // note that a word could have more than one leading/trailing punctuation symbols
   // you need to write this
+  if (ispunct(word.back())) {
+    word.pop_back();
+  }
+  if (ispunct(word.front())) {
+    word.erase(word.begin());
+  }
 
   return word;
 }
@@ -75,5 +81,5 @@ bool ReadWords::isNextWord()
 
 void ReadWords::close()
 { // you must write this
-    if (eoffound) ReadWords::wordfile.close();
+    if (eoffound) wordfile.close();
 }
