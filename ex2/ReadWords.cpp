@@ -12,7 +12,8 @@ using namespace std;
 int main() {
     const char *filename = "testwords.txt";
     ReadWords file = ReadWords(filename);
-    cout << file.getNextWord() << endl;
+    cout << file.getNextWord() << endl 
+    << file.getNextWord() << endl;
     system("pause");
 }
 
@@ -24,17 +25,31 @@ char to_lowercase(char c)
   return c;
 }
 
-string removePunct(string word)
-{ // should return a copy of the word with all leading and trailing punctuation      
-  // removed
-  // punctuation elsewhere in the word should not be removed
-  // note that a word could have more than one leading/trailing punctuation symbols
-  // you need to write this
-  if (ispunct(word.back())) {
-    word.pop_back();
+string removePunct(string word) { 
+  /**
+   * Returns a string of the word with punctuation removed from front and back of word
+   * @return - string - word
+   * @param word - a string to be manipulated
+   */
+  string w;
+  for (char &c: word) { c = to_lowercase(c); }
+  // Loop through the word, if there is punctuation; remove it. Do this until we reach a non-punct char
+  for (int i = 0, len = word.size(); i < len; i++) {
+    while (ispunct(word[i])) {
+      word.erase(i--, 1);
+      len = word.size();
+      i++;
+      if (!ispunct(word[i])) break;
+    }
+    break;
   }
-  if (ispunct(word.front())) {
-    word.erase(word.begin());
+  for (int i = word.size(), len = word.size(); i --> 0; ) {
+    while (ispunct(word[i])) {
+      word.erase(i--, 1);
+      len = word.size();
+      if (!ispunct(word[i])) break;
+    }
+    break;
   }
 
   return word;
