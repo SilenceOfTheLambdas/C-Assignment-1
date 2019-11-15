@@ -2,6 +2,7 @@
  * This includes the main function that is responsible for running the program
 **/
 
+#include "barChart.h"
 #include "ReadWords.h"
 #include <iostream>
 
@@ -13,10 +14,13 @@ int main() {
     string userInput;
     cin >> userInput;
     ReadWords file = ReadWords(userInput.c_str());
+    
+    cout << "Now please enter text filename: ";
+    cin >> userInput;
+    ReadWords txtFile = ReadWords(userInput.c_str());
 
+    barChart chart;
+    chart.calcOccurrences(file, txtFile);
 
-    cout << file.getNextWord() << endl 
-    << file.getNextWord() << endl;
-    file.close();
     system("pause");
 }

@@ -8,6 +8,7 @@ using namespace std;
 #include <cctype>
 #include <cstdlib>
 #include <iostream>
+#include <map>
 
 char to_lowercase(char c)
 {
