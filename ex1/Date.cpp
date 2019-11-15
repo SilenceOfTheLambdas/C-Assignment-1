@@ -9,13 +9,6 @@
 
 using namespace std;
 
-int main() {
-    // Testing
-	Date date = Date(1, 5, 2019);
-    cout << string(date);
-    system("pause");
-}
-
 Date::Date() {
     this->d = 1;
     this->m = 1;

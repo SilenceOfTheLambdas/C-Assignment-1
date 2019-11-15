@@ -1,9 +1,7 @@
-// replace my comments with your own
-// except: you can use my comment about one-word lookahead
-
-// you may modify the code that I have supplied if you wish
-
-
+/**
+ * Will display a graph showing the number of words that occur in file A based on a list in   * File B.
+ * @author Callum-James Smith
+**/
 using namespace std;
 
 #include "ReadWords.h"
@@ -11,11 +9,19 @@ using namespace std;
 #include <cstdlib>
 #include <iostream>
 
+char to_lowercase(char c)
+{
+  if (c >= 'A' && c <= 'Z')
+     return c + 32;
+
+  return c;
+}
+
 string removePunct(string word)
 { // should return a copy of the word with all leading and trailing punctuation      
   // removed
   // punctuation elsewhere in the word should not be removed
-  // note that a word could havce more than one leading/trailing punctuation symbols
+  // note that a word could have more than one leading/trailing punctuation symbols
   // you need to write this
 
   return word;
@@ -40,16 +46,21 @@ string ReadWords::getNextWord()
 
   // incomplete
 
+  string str;
   string word = nextword;
   wordfile >> nextword;
 
   if (wordfile.eof())
      eoffound = true;
 
-  word = removePunct(word);
-
-  // need to check that word contains a letter, and if not return an empty string;
-  // also need to convert to lower case before returning
+  if (word.empty())
+     return "";
+  
+  for (char &c: str) {
+    c = to_lowercase(c);
+  }
+  word = str;
+  word = removePunct(str);
 
   return word;
 }
@@ -60,4 +71,5 @@ bool ReadWords::isNextWord()
 
 void ReadWords::close()
 { // you must write this
+    if (eoffound) ReadWords::wordfile.close();
 }
