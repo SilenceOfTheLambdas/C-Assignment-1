@@ -12,7 +12,7 @@ using namespace std;
 int main() {
     const char *filename = "testwords.txt";
     ReadWords file = ReadWords(filename);
-    file.getNextWord();
+    cout << file.getNextWord();
     system("pause");
 }
 
@@ -52,9 +52,6 @@ string ReadWords::getNextWord()
   // uses a one-word lookahead to avoid any problems relating to when if end-of-file
   // is detected due to absence/presence of newline at end of file
 
-  // incomplete
-
-  string str;
   string word = nextword;
   wordfile >> nextword;
 
@@ -64,11 +61,10 @@ string ReadWords::getNextWord()
   if (word.empty())
      return "";
   
-  for (char &c: str) {
+  for (char &c: word) {
     c = to_lowercase(c);
   }
-  word = str;
-  word = removePunct(str);
+  word = removePunct(word);
 
   return word;
 }
