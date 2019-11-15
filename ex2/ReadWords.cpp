@@ -9,6 +9,13 @@ using namespace std;
 #include <cstdlib>
 #include <iostream>
 
+int main() {
+    const char *filename = "testwords.txt";
+    ReadWords file = ReadWords(filename);
+    file.getNextWord();
+    system("pause");
+}
+
 char to_lowercase(char c)
 {
   if (c >= 'A' && c <= 'Z')
@@ -31,6 +38,7 @@ ReadWords::ReadWords(const char *fname)
 {   wordfile.open(fname);//open file
     if (!wordfile)
     {   cout << "Failed to open " << fname << endl;
+        system("pause");
         exit(1);
     }
     wordfile >> nextword;

@@ -3,8 +3,12 @@
 **/
 
 #include "ReadWords.h"
+#include <iostream>
+
+using namespace std;
 
 
 int main() {
-    ReadWords("test.txt");
+    cout << "Test";
+    system("pause");
 }
