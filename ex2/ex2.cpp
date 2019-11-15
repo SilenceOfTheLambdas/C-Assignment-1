@@ -9,6 +9,14 @@ using namespace std;
 
 
 int main() {
-    cout << "Test";
+    cout << "Please enter filename of wordslist: ";
+    string userInput;
+    cin >> userInput;
+    ReadWords file = ReadWords(userInput.c_str());
+
+
+    cout << file.getNextWord() << endl 
+    << file.getNextWord() << endl;
+    file.close();
     system("pause");
 }
