@@ -6,7 +6,6 @@
             "label": "g++.exe build active file",
             "command": "C:\\MinGW\\bin\\g++.exe",
             "args": [
-                "${fileDirname}\\barChart.cpp",
                 "${fileDirname}\\ReadWords.cpp",
                 "${fileDirname}\\ex2.cpp",
                 "-o",

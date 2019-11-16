@@ -12,7 +12,6 @@ using namespace std;
 
 #include <string>
 #include <fstream>
-#include "barChart.h"
 
 class ReadWords
 {
