@@ -5,6 +5,7 @@
 using namespace std;
 
 #include "ReadWords.h"
+#include "graph.h"
 #include <cctype>
 #include <cstdlib>
 #include <iostream>
@@ -49,13 +50,13 @@ string removePunct(string word) {
 }
 
 ReadWords::ReadWords(const char *fname)
-{   wordfile.open(fname);//open file
-    if (!wordfile)
-    {   cout << "Failed to open " << fname << endl;
-        system("pause");
-    }
-    wordfile >> nextword;
-    eoffound = false;
+{   
+  wordfile.open(fname);//open file
+  if (!wordfile)
+  {   cout << "Failed to open " << fname << endl;
+  }
+  wordfile >> nextword;
+  eoffound = false;
 }
 
 string ReadWords::getNextWord()

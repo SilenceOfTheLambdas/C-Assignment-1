@@ -2,13 +2,14 @@
  * This includes the main function that is responsible for running the program
 **/
 #include "ReadWords.h"
+#include "graph.h"
 #include <iostream>
 #include <map>
 
 using namespace std;
 
 
-int main() {
+auto main() -> int {
     cout << "Please enter filename of wordslist: ";
     string userInput;
     cin >> userInput;
@@ -18,17 +19,7 @@ int main() {
     cin >> userInput;
     ReadWords txtFile = ReadWords(userInput.c_str());
 
-    map<string, int> occurrence;
-    bool isOccurrence;
-    while (file.isNextWord()) {
-        int occ = file.getNextWord().compare(txtFile.getNextWord()) ? occ+=1 : isOccurrence = false;
-        if (isOccurrence) occurrence[file.getNextWord()] = occ;
-    }
-
-    for(auto elem : occurrence)
-    {
-        std::cout << elem.first << " " << elem.second << "\n";
-    }
-
+    graph g;
+    g.calcOccurrence(file, txtFile);
     system("pause");
 }
