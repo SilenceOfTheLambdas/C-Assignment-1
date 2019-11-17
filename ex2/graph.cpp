@@ -27,7 +27,13 @@ void graph::storeTxtFile() {
 }
 
 void graph::drawGraph(const char* filename, ReadWords& wordList, ReadWords& txtFile) {
-    ofstream outputFile(filename, ios::out);
+    /**
+     * Draws the bar chart showing word occurrences, then outputs the results into a file (and console)
+     * @param filename - specifies the name of the output file
+     * @param wordlist - the wordslist file, this will be compared against txtFile
+     * @param txtFile - the the txtFile being compared
+     */
+    ofstream outputFile(filename, ios::out); // Create the output stream for the output file
     map<string, int> occurrence;
     // Calculates the occurrence of words in one vector, to another vector
     int occ = 0;
@@ -48,12 +54,14 @@ void graph::drawGraph(const char* filename, ReadWords& wordList, ReadWords& txtF
         if (elem.second > biggestOcc) biggestOcc = elem.second;
     }
     cout << string(((biggestOcc+biggestWord+2)/2), '=') << "Results" << string(((biggestOcc+biggestWord+2)/2), '=') << endl;
+    // File output
     outputFile << string(((biggestOcc+biggestWord+2)/2), '=') << "Results" << string(((biggestOcc+biggestWord+2)/2), '=') << endl;
     cout << "Key: * = " << 1 << " occurrence" << endl;
     for (auto elem: occurrence) {
         starsNo = elem.second;
         cout << setw(biggestWord+2) << left << elem.first << '|' << setw(starsNo+2) << string(starsNo, '*') << setw(5) << left << elem.second << endl;
         cout << string((biggestWord+2), '-') << endl;
+        // File output
         outputFile << setw(biggestWord+2) << left << elem.first << '|' << setw(starsNo+2) << string(starsNo, '*') << setw(5) << left << elem.second << endl;
         outputFile << string((biggestWord+2), '-') << endl;
     }

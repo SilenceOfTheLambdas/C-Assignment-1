@@ -27,6 +27,7 @@ auto main() -> int {
     cout << "Please enter the name for the ouput file: ";
     string outputFile;
     cin >> outputFile;
+    
     g.drawGraph(outputFile.c_str(), file, txtFile);
     system("pause");
 }
