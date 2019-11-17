@@ -13,39 +13,44 @@ vector<string> graph::tmpVector;
 
 void graph::storeWordList() {
     // Make a copy vector of the first words in the 1st file
-    for (int i = 0; i < tmpVector.size(); i++) {
+    for (size_t i = 0; i < tmpVector.size(); i++) {
+        cout << tmpVector[i] << endl;
         wordListWords.push_back(removePunct(tmpVector[i]));
     }
 }
 
 void graph::storeTxtFile() {
     // Make a copy vector of the first words in the 1st file
-    for (int i = 0; i < tmpVector.size(); i++) {
+    for (size_t i = 0; i < tmpVector.size(); i++) {
+        cout << tmpVector[i] << endl;
         txtFileWords.push_back(removePunct(tmpVector[i]));
     }
 }
 
 void graph::calcOccurrence(ReadWords& wordList, ReadWords& txtFile) {
+    // // Testing
+    // for (string word: wordListWords) {
+    //     cout << word << endl;
+    // }
+    // for (string word: txtFileWords) {
+    //     cout << word << endl;
+    // }
 
-    for (string word: wordListWords) {
-        cout << word << endl;
+    cout << "Testing...............................................\n";
+
+    map<string, int> occurrence;
+    int occ = 0;
+    for (size_t i = 0; i != wordListWords.size(); i++) {
+        for (size_t x = 0; x != txtFileWords.size(); x++) {
+            if (wordListWords[i] == txtFileWords[x]) {
+                occurrence[wordListWords[i]] = occ+=1;
+            }
+        }
+        occ = 0;
     }
-    for (string word: txtFileWords) {
-        cout << word << endl;
-    }
-    // map<string, int> occurrence;
-    // int occ = 0;
-    // for (int i  = 1; i <= 10; i++) {
-    //     string word = wordList.getNextWord();
-    //     string compWord = txtFile.getNextWord();
-    //     bool isOccurrence = true;
-    //     if (word == compWord) {
-    //         occurrence[word] = occ+=1;
-    //     } else occ = 0;
-    // }
     
-    // for(auto elem : occurrence)
-    // {
-    //     cout << elem.first << " " << elem.second << "\n";
-    // }
+    for(auto elem : occurrence)
+    {
+        cout << elem.first << " " << elem.second << "\n";
+    }
 }
