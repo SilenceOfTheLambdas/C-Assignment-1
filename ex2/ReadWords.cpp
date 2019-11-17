@@ -57,12 +57,14 @@ string graph::removePunct(string word) {
 ReadWords::ReadWords(const char *fname)
 {   
   wordfile.open(fname);//open file
+  if (!wordfile) // had to flip this for some reason
+  {   
+    cout << "Failed to open " << fname << endl;
+    exit(1);
+  }
   string tempWord;
   while (wordfile >> tempWord) {
     graph::tmpVector.push_back(tempWord);
-  }
-  if (wordfile) // had to flip this for some reason
-  {   cout << "Failed to open " << fname << endl;
   }
   wordfile >> nextword;
   eoffound = false;
