@@ -9,9 +9,14 @@ using namespace std;
 #include <cctype>
 #include <cstdlib>
 #include <iostream>
-#include <map>
+#include <vector>
+#include <algorithm>
+#include <fstream>
+#include <string>
+#include <iterator>
 
-char to_lowercase(char c)
+
+char graph::to_lowercase(char c)
 {
   if (c >= 'A' && c <= 'Z')
      return c + 32;
@@ -19,14 +24,14 @@ char to_lowercase(char c)
   return c;
 }
 
-string removePunct(string word) { 
+string graph::removePunct(string word) { 
   /**
    * Returns a string of the word with punctuation removed from front and back of word
    * @return - string - word
    * @param word - a string to be manipulated
    */
   string w;
-  for (char &c: word) { c = to_lowercase(c); }
+  for (char &c: word) { c = graph::to_lowercase(c); }
   // Loop through the word, if there is punctuation; remove it. Do this until we reach a non-punct char
   for (int i = 0, len = word.size(); i < len; i++) {
     while (ispunct(word[i])) {
@@ -57,6 +62,12 @@ ReadWords::ReadWords(const char *fname)
   }
   wordfile >> nextword;
   eoffound = false;
+
+  // Insert words into a vector stored in graph.h
+  copy(istream_iterator<string>(wordfile),
+         istream_iterator<string>(),
+         back_inserter(graph::tmpVector));
+
 }
 
 string ReadWords::getNextWord()
@@ -76,9 +87,9 @@ string ReadWords::getNextWord()
      return "";
   
   for (char &c: word) {
-    c = to_lowercase(c);
+    c = graph::to_lowercase(c);
   }
-  word = removePunct(word);
+  word = graph::removePunct(word);
 
   return word;
 }
@@ -88,6 +99,6 @@ bool ReadWords::isNextWord()
 }
 
 void ReadWords::close()
-{ // you must write this
+{
     if (eoffound) wordfile.close();
 }
