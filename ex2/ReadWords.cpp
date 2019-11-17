@@ -57,21 +57,15 @@ string graph::removePunct(string word) {
 ReadWords::ReadWords(const char *fname)
 {   
   wordfile.open(fname);//open file
-   string word;
-  while (wordfile >> word) {
-    graph::tmpVector.push_back(word);
+  string tempWord;
+  while (wordfile >> tempWord) {
+    graph::tmpVector.push_back(tempWord);
   }
-  if (!wordfile)
+  if (wordfile) // had to flip this for some reason
   {   cout << "Failed to open " << fname << endl;
   }
   wordfile >> nextword;
   eoffound = false;
-
-  // Insert words into a vector stored in graph.h
-  // copy(istream_iterator<string>(wordfile),
-  //        istream_iterator<string>(),
-  //        back_inserter(graph::tmpVector));
-
 }
 
 string ReadWords::getNextWord()

@@ -14,7 +14,6 @@ vector<string> graph::tmpVector;
 void graph::storeWordList() {
     // Make a copy vector of the first words in the 1st file
     for (size_t i = 0; i < tmpVector.size(); i++) {
-        cout << tmpVector[i] << endl;
         wordListWords.push_back(removePunct(tmpVector[i]));
     }
 }
@@ -22,7 +21,6 @@ void graph::storeWordList() {
 void graph::storeTxtFile() {
     // Make a copy vector of the words from the 2nd file input by the user
     for (size_t i = 0; i < tmpVector.size(); i++) {
-        cout << tmpVector[i] << endl;
         txtFileWords.push_back(removePunct(tmpVector[i]));
     }
 }
@@ -34,7 +32,7 @@ void graph::calcOccurrence(ReadWords& wordList, ReadWords& txtFile) {
     for (size_t i = 0; i != wordListWords.size(); i++) {
         for (size_t x = 0; x != txtFileWords.size(); x++) {
             if (wordListWords[i] == txtFileWords[x]) {
-                occurrence[wordListWords[i]] = occ+=1;
+                occurrence[wordListWords[i]] = occ++;
             }
         }
         occ = 0;
