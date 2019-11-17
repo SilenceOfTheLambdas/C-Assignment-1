@@ -24,6 +24,9 @@ auto main() -> int {
     ReadWords txtFile = ReadWords(userInput.c_str());
     g.storeTxtFile();
 
-    g.drawGraph(file, txtFile);
+    cout << "Please enter the name for the ouput file: ";
+    string outputFile;
+    cin >> outputFile;
+    g.drawGraph(outputFile.c_str(), file, txtFile);
     system("pause");
 }

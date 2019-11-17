@@ -26,7 +26,8 @@ void graph::storeTxtFile() {
     }
 }
 
-void graph::drawGraph(ReadWords& wordList, ReadWords& txtFile) {
+void graph::drawGraph(const char* filename, ReadWords& wordList, ReadWords& txtFile) {
+    ofstream outputFile(filename, ios::out);
     map<string, int> occurrence;
     // Calculates the occurrence of words in one vector, to another vector
     int occ = 0;
@@ -38,18 +39,22 @@ void graph::drawGraph(ReadWords& wordList, ReadWords& txtFile) {
         }
         occ = 0;
     }
-    int biggestWord = 0;
-    int biggestOcc = 0;
-    int starsNo = 0;
+    int biggestWord = 0; // The size of the biggest word
+    int biggestOcc = 0; // The larges number of occurrences
+    int starsNo = 0; // The number of stars to show
     // Display the graph
     for (auto elem: occurrence) {
         if (elem.first.size() > biggestWord) biggestWord = elem.first.size();
         if (elem.second > biggestOcc) biggestOcc = elem.second;
     }
     cout << string(((biggestOcc+biggestWord+2)/2), '=') << "Results" << string(((biggestOcc+biggestWord+2)/2), '=') << endl;
+    outputFile << string(((biggestOcc+biggestWord+2)/2), '=') << "Results" << string(((biggestOcc+biggestWord+2)/2), '=') << endl;
+    cout << "Key: * = " << 1 << " occurrence" << endl;
     for (auto elem: occurrence) {
         starsNo = elem.second;
-        cout << setw(biggestWord+2) << left << elem.first << '|' << setw(biggestOcc+2) << string(starsNo, '*') << setw(5) << right << elem.second << endl;
+        cout << setw(biggestWord+2) << left << elem.first << '|' << setw(starsNo+2) << string(starsNo, '*') << setw(5) << left << elem.second << endl;
         cout << string((biggestWord+2), '-') << endl;
+        outputFile << setw(biggestWord+2) << left << elem.first << '|' << setw(starsNo+2) << string(starsNo, '*') << setw(5) << left << elem.second << endl;
+        outputFile << string((biggestWord+2), '-') << endl;
     }
 }
