@@ -4,12 +4,13 @@
 #include <iostream>
 #include <vector>
 #include<string.h>
+#include <iomanip>
 
 using namespace std;
 
 vector<string> txtFileWords; // A temp vector that will be user to store the txt file
 vector<string> wordListWords; // Stores the word list
-vector<string> graph::tmpVector;
+vector<string> graph::tmpVector; // this currently holds the value of the word file, obtained from ReadWords.cpp
 
 void graph::storeWordList() {
     // Make a copy vector of the first words in the 1st file
@@ -25,9 +26,9 @@ void graph::storeTxtFile() {
     }
 }
 
-void graph::calcOccurrence(ReadWords& wordList, ReadWords& txtFile) {
-
+void graph::drawGraph(ReadWords& wordList, ReadWords& txtFile) {
     map<string, int> occurrence;
+    // Calculates the occurrence of words in one vector, to another vector
     int occ = 0;
     for (size_t i = 0; i != wordListWords.size(); i++) {
         for (size_t x = 0; x != txtFileWords.size(); x++) {
@@ -37,9 +38,18 @@ void graph::calcOccurrence(ReadWords& wordList, ReadWords& txtFile) {
         }
         occ = 0;
     }
-    
-    for(auto elem : occurrence)
-    {
-        cout << elem.first << " " << elem.second << "\n";
+    int biggestWord = 0;
+    int biggestOcc = 0;
+    int starsNo = 0;
+    // Display the graph
+    for (auto elem: occurrence) {
+        if (elem.first.size() > biggestWord) biggestWord = elem.first.size();
+        if (elem.second > biggestOcc) biggestOcc = elem.second;
+    }
+    cout << string(((biggestOcc+biggestWord+2)/2), '=') << "Results" << string(((biggestOcc+biggestWord+2)/2), '=') << endl;
+    for (auto elem: occurrence) {
+        starsNo = elem.second;
+        cout << setw(biggestWord+2) << left << elem.first << '|' << setw(biggestOcc+2) << string(starsNo, '*') << setw(5) << right << elem.second << endl;
+        cout << string((biggestWord+2), '-') << endl;
     }
 }

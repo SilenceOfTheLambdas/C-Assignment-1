@@ -24,6 +24,6 @@ auto main() -> int {
     ReadWords txtFile = ReadWords(userInput.c_str());
     g.storeTxtFile();
 
-    g.calcOccurrence(file, txtFile);
+    g.drawGraph(file, txtFile);
     system("pause");
 }
